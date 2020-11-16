@@ -1,7 +1,10 @@
 <div class="row">
     <div class="col-md-4">
         <h3>Seleccione archivos</h3>
-        <div class="well drop-zone file-over">
+        <!-- Colocamos la directiva - appNgDropFiles - que controlará el comportamiento de este elemento del html -->
+        <!-- archivos: Aunque parezca que son instancias independienteds, la asignación de los objetos se hacen por referencia,
+            por lo que indiferentemente de si la modificación se hace desde el componente o la directaiva la lista de archivos se verá afectada igualmente  -->
+        <div appNgDropFiles [archivos]="archivos" (mouseSobre)='estaSobreElemento = $event' [ngClass]="{'file-over': estaSobreElemento}" class="well drop-zone file-over">
             <h4>Deje caer aquí los archivos</h4>
             <img src="assets/drop-images.png" alt="">
         </div>
@@ -27,11 +30,12 @@
                     </td>
                 </tr> -->
                 <tr *ngFor="let archivo of archivos">
-                    <td>{{archivo.nombreArchivo}}</td>
-                    <td>24 Mb</td>
+                    <td [ngClass]="{'text-success': archivo.progreso >= 100}">{{archivo.nombreArchivo}}</td>
+                    <!-- El size viene en bytes y hay que psarlo a Mb -->
+                    <td>{{archivo.archivo.size/1024/1024|number: '.2-2'}} Mb</td>
                     <td>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="archivo.progress" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar" role="progressbar" [ngStyle]="{'width': archivo.progreso + '%'}" aria-valuenow="archivo.progress" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </td>
                 </tr>

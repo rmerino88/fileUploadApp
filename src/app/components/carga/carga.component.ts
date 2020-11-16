@@ -9,6 +9,7 @@ import { FileItem } from 'src/app/models/file-item/file-item';
 })
 export class CargaComponent implements OnInit {
 
+  estaSobreElemento = false;
   archivos: FileItem[] = [];
 
   constructor( private cargaImagenesService: CargaImagenesService ) { }
@@ -17,8 +18,8 @@ export class CargaComponent implements OnInit {
 
   cargarImagenes( ) {
     this.cargaImagenesService.cargarImagenesFirebase(this.archivos);
-    // this.archivos.push(new FileItem('NocheVieja2020.jpg', true, 75))
   }
+
   limpiarImagenes( ) {
     // this.cargaImagenesService.cargarImagenesFirebase(this.archivos);
     this.archivos = [];

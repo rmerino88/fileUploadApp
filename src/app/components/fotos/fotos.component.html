@@ -1,1 +1,11 @@
-<p>fotos works!</p>
+<div class="card-columns">
+    <div *ngFor="let item of items | async" class="card bg-dark text-white">
+        <!-- <img class="card-img" [src]="item.url" alt="Card image"> -->
+        <div class="card-img-overlay">
+            <h5 class="card-title">${{ item.nombre }}</h5>
+            <!-- <h5 class="card-title">${{ item.nombreArchivo }}</h5>
+            <p class="card-text">${{ item.archivo.size }}</p>
+            <p class="card-text">Modificado por última vez: ${{ item.archivo.lastModified }}</p> -->
+        </div>
+    </div>
+</div>
